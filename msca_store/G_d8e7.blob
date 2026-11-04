@@ -1,0 +1,10 @@
+## TRANSPORT — Enhanced Transport Layer
+
+Purpose: integrate store, glyphs, and ECT for reliable data transport.
+Provides pack/unpack with optional error correction.
+
+Key invariants:
+- content-addressed handles for durability
+- error correction via ECT when requested
+- loud-fail on corruption
+- testable and scriptable

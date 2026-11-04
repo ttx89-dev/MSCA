@@ -1,0 +1,22 @@
+## DEV-POLICY GATES — every deliverable passes these
+A feature that cannot be tested does not ship; it ships as a documented gap.
+Executable form: `python -m msca.gates`. Source of truth: gates.py.
+
+  EXTENSIBLE     new capability touches only new files
+  MODULAR        one concern per unit, no cross-import outside declared iface
+  SCRIPTABLE     any procedure is a named command that reproduces the result
+  INTEROPERABLE  standard formats, round-trip against a reference impl
+  PROGRAMMABLE   behaviour is data; config change alters behaviour, no recompile
+  SCALABLE       same result at 1x and 100x, no quality regression
+  REPLICABLE     run twice, diff == 0
+  TESTABLE       every feature has a test that FAILS when it breaks
+                 (mutation check: break it, watch it go red)
+  VALIDATABLE    output checked against a source of truth; validator recorded
+  OPERABLE       100% of declared features actually executed, not merely listed
+
+100%-OPERABLE is the gate that catches real defects: a feature never run is a
+claim, not a capability. Audit by execution, not by reading the manifest.
+
+TEST THE TESTS. A suite that stays green under deliberate breakage is worse
+than no suite — it manufactures false confidence, the same failure class as
+parity_ok=True over a truncated payload.

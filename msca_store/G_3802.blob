@@ -1,0 +1,25 @@
+## KNOWN GAPS — stated, not hidden
+  G1  `ECT` is NOT present. Zero occurrences across harness sources,
+      stdlib/, and the 60-entry tool registry. Do not fabricate an ECT tool.
+      If error-correction is meant, RS(255,223) parity and verify_glyph are the
+      nearest present analogues. If it is an external system, it is not wired
+      into this configuration.
+  G2  provider.nvidia.models in opencode.json declares only moonshotai/kimi-k3.
+      The harness catalog reports z-ai/glm-5.3 on nvidia as free+default (merged
+      registry), so laya/deliberation routing works, but opencode's own model
+      picker may not list it. Fix is additive: one line, nothing removed.
+  G3  MSCA R1 headroom unclosed. Resident tier measured 500 of a 512 ceiling on
+      chars/4, and BPE runs HIGHER on symbol-mixed text, so it will likely
+      fail R1 as written. Owner decision, then mechanical trim.
+  G4  deep-thinker is not in the live tool registry; sequential-thinking is.
+      Tier 3 uses sequential-thinking. Recorded, not silently corrected.
+  G5  deliberation.run rejected a valid graph with `graph must have 'entities'
+      array` on first call, then accepted the identical shape on retry. Schema
+      handling is non-deterministic at the MCP boundary. Verify every
+      deliberation verdict; do not assume the first error is your shape.
+  G6  laya `score` returns legend 'item' with probability 1.0 on a list-shaped
+      rubric — a malformed result that LOOKS like a measurement. Discard any
+      score whose legend is the literal string 'item'.
+  G7  laya SILENTLY DROPS questions from a batched call — 3 occurrences, the
+      call still succeeding. Count the answer keys against the keys you sent. A
+      missing answer is UNRESOLVED, never agreement.

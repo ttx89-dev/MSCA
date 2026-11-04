@@ -1,0 +1,12 @@
+## ECT — Error Correction Transport
+
+Purpose: reliable transport with integrity verification and parity-based
+error detection. RS(255,223) analogues available via verify_glyph in
+points-reasoning; local ect module provides testable primitives.
+
+Key invariants:
+- checksum covers data bytes (detects tampering)
+- parity allows detection of corruption patterns
+- verify() is non-raising; decode() raises on failure
+- empty payloads refused (loud-fail discipline)
+- testable, replicable, scriptable

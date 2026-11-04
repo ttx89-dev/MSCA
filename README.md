@@ -4,7 +4,7 @@
 > reports **15/15 gates PASS** with `self_test=pass` (three deliberately
 > injected defects — a resident-budget overflow, a false self-certification,
 > and decorative padding — are detected and reported), and `python -m msca
-> --summary` reports **capacity match, 46 handles, 0 unreachable**.
+> --summary` reports **capacity match, 9 handles, 0 unreachable**.
 
 **MSCA** is a tiered agent-memory archive for software agents that use
 language models. Instead of one long context window, it keeps a tiny,

@@ -1,0 +1,25 @@
+{
+  "capacity_bits_per_resident_token": 181.243,
+  "capacity_floor": 150.0,
+  "capacity_floor_met": true,
+  "ceiling": 640,
+  "command": "python -m msca.capacity --record",
+  "commit": "4046fe4",
+  "handles_minted": 0,
+  "measured_at": "2026-11-04T19:48:02+0200",
+  "phases": 15,
+  "reachable_bytes": 14069,
+  "resident_chars": 2098,
+  "resident_counts": {
+    "cl100k_base": 562,
+    "o200k_base": 560,
+    "p50k_base": 621
+  },
+  "resident_method": "measured",
+  "resident_tokens": 621,
+  "resident_worst_encoding": "p50k_base",
+  "schema": "msca.capacity/1",
+  "sections": 9,
+  "tags": 6,
+  "unreachable_sections": []
+}

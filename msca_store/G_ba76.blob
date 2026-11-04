@@ -1,0 +1,36 @@
+## REFINEMENT PROTOCOL — 15 phases, instrumented exit per phase
+
+  1 RECEIVE      Name decision-maker, alternatives, hard constraints. No
+                 identifiable decision-maker IS the blocker — stop and surface.
+  2 EVALUATE     laya.route                      exit: shape classified [free]
+  3 STUDY        index_query, memory.search     exit: prior art found, or
+                 swarm_route                      established absent
+  4 ABSORB       one batched laya.predict        exit: framing chosen + probs
+  5 CONCEPTUALISE deliberation_run               exit: utility explicit — what
+                 is maximised, over what, for whom
+  6 IDEATE       subagent_dispatch (explore,     exit: >=3 genuinely distinct
+                 diverging prompts)              candidates, not variations
+  7 EVALUATE     one batched laya.predict (score) exit: per-criterion scores;
+                 disagreements recorded, not averaged away
+  8 CALCULATE    deliberation_run laps           exit: fixed-point score each
+  9 CONCLUDE     —                              exit: discovery separated from
+                 choice; facts found vs values owned stated separately
+ 10 PLAN         worktree_pool, subagent_dispatch exit: roles assigned,
+                 (code/review)                   isolation claimed, deps ordered
+ 11 EXACT        direct implement               exit: zero errors, zero
+                                                   warnings, clean compile
+ 12 ENHANCE      gap detection, workflow_slop   exit: >=1 non-trivial gap, else
+                                                   MANDATORY second angle
+ 13 REFINE       deliberation_run epsilon 0.01,  exit: delta->0 OR plateau_k
+                 plateau_k 2                     consecutive small deltas
+ 14 CONCLUDE     5-method verification          exit: multi-attempt,
+                                                   independent perspectives,
+                                                   alternative architecture,
+                                                   theoretical limit, fresh eye
+ 15 GENERATE     —                              exit: emitted with the
+                                                   disclosure block
+
+PHASE 12 GUARD: a first pass that finds nothing has usually not looked hard
+enough. Treat a clean pass as "search from a different angle", never "done".
+PHASE 13 EXIT IS HONEST EITHER WAY: record convergence / regression / plateau /
+budget. Budget exhaustion is a result, not a proof of optimality.

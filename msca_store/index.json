@@ -1,0 +1,50 @@
+{
+ "handles": {
+  "<G:2927>": {
+   "bytes": 1127,
+   "kind": "G",
+   "sha256": "2927e2263f5b8841685af51457c565a16d480d89e73adf958fca48267ae39aae"
+  },
+  "<G:3802>": {
+   "bytes": 1780,
+   "kind": "G",
+   "sha256": "38029e4454542e9ec6a3712ccdbfe0b3e3374ba7c3483a7e67495fa0d78d7081"
+  },
+  "<G:57f8>": {
+   "bytes": 1304,
+   "kind": "G",
+   "sha256": "57f8e0412e0a14afcce05c5a1af1134c6972061123d269d2a801fb0e7659bded"
+  },
+  "<G:70d3>": {
+   "bytes": 2272,
+   "kind": "G",
+   "sha256": "70d3410b6f1e045809328cb0b93325745014718dd5114f68a1ead0ed9b776a89"
+  },
+  "<G:7506>": {
+   "bytes": 498,
+   "kind": "G",
+   "sha256": "7506f0372977e71796e8f9ab4d2ca558a8fc3b853f1058ca05545f140d65ba39"
+  },
+  "<G:ba76>": {
+   "bytes": 2524,
+   "kind": "G",
+   "sha256": "ba76b230dc36e6377539f3d68b55131f06db908fd149229fbb65afb33b5d2b92"
+  },
+  "<G:cdf7>": {
+   "bytes": 875,
+   "kind": "G",
+   "sha256": "cdf70a62ddc40137b6f88900af0ba2f6333452b2afdd889ab5ee8c2b8718c4c6"
+  },
+  "<G:d5ce>": {
+   "bytes": 1364,
+   "kind": "G",
+   "sha256": "d5ce99e1e267039639a5a234a3b52a8ad923ab25baa5881f2facc1cfa2f6fa43"
+  },
+  "<G:d8e7>": {
+   "bytes": 321,
+   "kind": "G",
+   "sha256": "d8e79221a27d880e6cb43fe07243024d89391179d05769362cec2940a7dca298"
+  }
+ },
+ "width": 4
+}

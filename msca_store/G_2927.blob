@@ -1,0 +1,20 @@
+## DECISION ROUTING
+Cheapest engine that can actually resolve the question. Never escalate past a
+tier that is already sufficient.
+
+  Q0 lookup or mechanical?  -> grep/glob/read/index_query. STOP. No model. [free]
+  Q1 what is the shape?     -> laya.route                             [free]
+  Q2 small, single-dimension, well-posed?
+                             -> ONE batched laya.predict          [1 load]
+  Q3 multi-lap, utility-bearing, competing candidates?
+                             -> deliberation.run, max_iterations 2-4 [kernel]
+  Q4 long-context state or branch exploration?
+                             -> points-reasoning deliberate/branch_glyph [glyph]
+  Q5 unresolved after Q2-Q4? -> sequential-thinking, explicit revision  [in-ctx]
+
+RATE BUDGET (nvidia, 40 req/min, z-ai/glm-5.3 free and default):
+  GPU ~2 s/load · CPU fallback ~20 s/load.
+  A 6-agent swarm is ~6 loads. Project before dispatch; if >30 units/min, cut
+  scope, use z-ai/glm-5.3-flash-free (orcarouter) for classification-shaped
+  latency-bound work, or defer. Say which model produced a result whenever the
+  distinction could change trust.
