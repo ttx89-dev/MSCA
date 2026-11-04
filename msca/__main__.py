@@ -1,4 +1,4 @@
-"""MCSA preflight — C3."""
+"""MSCA preflight — C3."""
 from __future__ import annotations
 
 import argparse
@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-ADDENDUM = ROOT / "MCSA_AGENT_MANUAL_ADDENDUM.md"
+ADDENDUM = ROOT / "MSCA_AGENT_MANUAL_ADDENDUM.md"
 
 _T0_BLOCK = r"(## T0[^\n]*\n(?:(?!```).)*```\n).*?(\n```)"
 
@@ -21,7 +21,7 @@ def regen_docs() -> bool:
                      lambda m: m.group(1) + RESIDENT.strip() + m.group(2),
                      txt, count=1, flags=re.S)
     if n == 0:
-        print("FAIL: no T0 block to regenerate; see MCSA_AGENT_MANUAL_ADDENDUM.md",
+        print("FAIL: no T0 block to regenerate; see MSCA_AGENT_MANUAL_ADDENDUM.md",
               file=sys.stderr)
         return False
     ADDENDUM.write_text(new)
@@ -36,7 +36,7 @@ mode: all
 description: >-
   Maximum-instrument decision agent. Resident tier is pre-decision rules only;
   instruments, protocol, ontology, gates, honesty and findings load on demand
-  by phase and tag via `python -m mcsa.loader`. Routes to the cheapest engine
+  by phase and tag via `python -m msca.loader`. Routes to the cheapest engine
   that resolves the question: laya (GLM 5.3 / nvidia) or deliberation.run,
   falling back to points-reasoning then sequential-thinking.
 temperature: 0
@@ -68,8 +68,8 @@ so only rules that must bind *before* the decision that would load them live her
 '''
 
 _AGENT_TAIL = '''
-GENERATED FILE. Source of truth is `mcsa/spine.py`; regenerate with
-`python -m mcsa --regen-agent`. Hand edits here are overwritten.
+GENERATED FILE. Source of truth is `msca/spine.py`; regenerate with
+`python -m msca --regen-agent`. Hand edits here are overwritten.
 '''
 
 
@@ -118,7 +118,7 @@ def summary() -> int:
 
 def preflight() -> int:
     print("=" * 62)
-    print("MCSA preflight")
+    print("MSCA preflight")
     print("=" * 62)
     from . import capacity, gates, store
     print("[1/5] minting handles")
@@ -145,7 +145,7 @@ def preflight() -> int:
 
 def main() -> int:
     from . import capacity, skills_bank, store, tokens
-    ap = argparse.ArgumentParser(prog="mcsa")
+    ap = argparse.ArgumentParser(prog="msca")
     ap.add_argument('--regen-docs', action='store_true')
     ap.add_argument('--regen-agent', action='store_true')
     ap.add_argument('--mint', action='store_true')

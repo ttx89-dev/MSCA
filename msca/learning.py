@@ -1,4 +1,4 @@
-"""MCSA learning — Learning and adaptation for the agent stack."""
+"""MSCA learning — Learning and adaptation for the agent stack."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ __all__ = ["Learning", "learn", "adapt"]
 
 class Learning:
     def __init__(self, path: Path | str | None = None):
-        self.path = Path(path) if path else Path(".mcsa_learning.json")
+        self.path = Path(path) if path else Path(".msca_learning.json")
         self.history: List[Dict[str, Any]] = []
         self._load()
 

@@ -1,4 +1,4 @@
-# MCSA — Requirements for a Maximum-Semantic-Capacity Agent System Prompt
+# MSCA — Requirements for a Maximum-Semantic-Capacity Agent System Prompt
 
 > **Status:** DRAFT spec. Additive artifact. Replaces nothing.
 > **Scope:** This document specifies *what an agent system prompt must satisfy* to
@@ -14,7 +14,7 @@
 
 | Non-goal | Reason |
 |---|---|
-| Replacing `ABSUBEST_FRAMEWORK_v3.1.md` or any deployed prompt | Out of scope by instruction. MCSA is an addendum, never an overwrite. |
+| Replacing `ABSUBEST_FRAMEWORK_v3.1.md` or any deployed prompt | Out of scope by instruction. MSCA is an addendum, never an overwrite. |
 | Reimplementing the POINTS ontology | The 5 relation types + epistemic fields are sound. See `65536/ontology.md`. |
 | Building a new glyph alphabet | Alphabet size is not the binding constraint. See §2. |
 | Depending on a specific model or vendor | All requirements are model-agnostic. |
@@ -166,17 +166,17 @@ Priority: **P0** blocks deployment · **P1** required for capacity claim ·
 
 The permanently-resident tier SHALL NOT exceed the approved budget, measured with
 the **worst available real tokenizer** — never a chars/4 estimate. Budget is
-config (`MCSA_R1_MAX_TOKENS` > `tokens.APPROVED_BUDGET`, currently **640**).
+config (`MSCA_R1_MAX_TOKENS` > `tokens.APPROVED_BUDGET`, currently **640**).
 Measured 2026-09-30: **592** (p50k_base; cl100k 543, o200k 539). The prior
 512 was chosen before any measurement existed; chars/4 under-reported by 18%.
 
-**Acceptance.** `python -m mcsa.gates`; `tokens.measure()` must return
+**Acceptance.** `python -m msca.gates`; `tokens.measure()` must return
 `method="measured"`, and `governing <= ceiling()`. All task-dependent content SHALL be reachable by handle.
 
 > Rationale: capacity is inversely proportional to resident tokens (§1). This is
 > the single largest available reduction and it costs no capability once R5 holds.
 
-**Acceptance.** `python -m mcsa.gates` reports `R1 resident ceiling PASS` with a
+**Acceptance.** `python -m msca.gates` reports `R1 resident ceiling PASS` with a
 real encoder named in `measured`. The gate is a regression gate against the
 approved budget; raising it deliberately is legitimate, drifting past it is not.
 
@@ -282,7 +282,7 @@ changes to L1/L2 sources. Replace L2 frame layout and assert L1 untouched.
 
 ### R9 — Additive, non-destructive composition · P0
 
-An MCSA artifact SHALL be addable to an existing agent manual **without
+An MSCA artifact SHALL be addable to an existing agent manual **without
 modifying, deleting, reordering, or shadowing any existing content**. The
 artifact SHALL declare its insertion point and SHALL be idempotent on re-apply.
 
@@ -371,14 +371,14 @@ the method does not settle them. They must be answered by whoever owns the agent
 
 > **Recorded per method, not resolved by it.** D3 in particular: dense symbol
 > vocabularies fail *silently and plausibly* on recall failure, which is
-> strictly worse than a legible failure. If MCSA is deployed, D3 should be
+> strictly worse than a legible failure. If MSCA is deployed, D3 should be
 > decided by observing recall on a real task distribution, not by argument.
 
 ---
 
 ## 8. Definition of done
 
-MCSA is deployable when:
+MSCA is deployable when:
 
 1. R1, R2, R4, R6, R9 pass (§5).
 2. A measurement artifact exists satisfying R3, with a recorded command.

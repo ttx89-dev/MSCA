@@ -1,6 +1,6 @@
-"""MCSA gates — the dev policy as executable code.
+"""MSCA gates — the dev policy as executable code.
 
-SCRIPTABLE:  python -m mcsa.gates
+SCRIPTABLE:  python -m msca.gates
 Every gate returns (name, passed, measured, floor). Exit non-zero on any
 failure, so it can be a CI step and not a checklist.
 
@@ -66,7 +66,7 @@ def r1_resident_ceiling(text: str = RESIDENT) -> Result:
         "R1 resident ceiling", gov <= ceil,
         f"{gov} tok ({m['method']}"
         + (f", {m['worst_encoding']}" if m["worst_encoding"] else "") + ")",
-        f"<= {ceil} (MCSA_R1_MAX_TOKENS)")
+        f"<= {ceil} (MSCA_R1_MAX_TOKENS)")
 
 
 def r6_no_self_certification(text: str = RESIDENT) -> Result:
@@ -101,7 +101,7 @@ def r_pointer_disclosure() -> Result:
     would otherwise silently reduce the count and weaken this gate.
     """
     ptrs = re.findall(r"\b([a-z_]+\.py)\b", RESIDENT)
-    ptrs += [m + ".py" for m in re.findall(r"`python -m mcsa\.([a-z_]+)`", RESIDENT)]
+    ptrs += [m + ".py" for m in re.findall(r"`python -m msca\.([a-z_]+)`", RESIDENT)]
     seen, ordered = set(), []
     for p in ptrs:
         if p not in seen:
@@ -263,7 +263,7 @@ def r_docs_drift() -> Result:
     failure rather than something a careful reader has to notice.
     """
     root = Path(__file__).resolve().parent.parent
-    f = root / "MCSA_AGENT_MANUAL_ADDENDUM.md"
+    f = root / "MSCA_AGENT_MANUAL_ADDENDUM.md"
     if not f.exists():
         return Result("R9 docs no-drift", False, "addendum absent", "must exist")
     txt = f.read_text()
@@ -274,7 +274,7 @@ def r_docs_drift() -> Result:
     same = m.group(1).strip() == RESIDENT.strip()
     return Result("R9 docs no-drift", same,
                   "addendum == spine" if same else "DRIFT: addendum != spine.RESIDENT",
-                  "regenerate: python -m mcsa --regen-docs")
+                  "regenerate: python -m msca --regen-docs")
 
 
 def r_capacity_floor() -> Result:
@@ -332,7 +332,7 @@ def self_test() -> bool:
         if not caught:
             return False
     # and a metric regression, not just text corruption
-    import mcsa.capacity as _cap
+    import msca.capacity as _cap
     real = _cap.measure
     _cap.measure = lambda root=None: {**real(root), "capacity_bits_per_resident_token": 1.0}
     try:
@@ -348,7 +348,7 @@ def self_test() -> bool:
 
 
 def main() -> int:
-    print("MCSA gates")
+    print("MSCA gates")
     res, ok = run()
     print()
     ok_self = self_test()

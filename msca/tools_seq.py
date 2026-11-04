@@ -1,4 +1,4 @@
-"""MCSA tools_seq - Toolcall sequence management for the agent stack."""
+"""MSCA tools_seq - Toolcall sequence management for the agent stack."""
 
 from __future__ import annotations
 

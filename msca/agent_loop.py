@@ -1,4 +1,4 @@
-"""MCSA agent_loop - Agent loop implementation."""
+"""MSCA agent_loop - Agent loop implementation."""
 
 from __future__ import annotations
 

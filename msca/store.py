@@ -1,4 +1,4 @@
-"""MCSA handle store — C1. Makes the documented grammar real.
+"""MSCA handle store — C1. Makes the documented grammar real.
 
 Before this module, `<G:hhhh>` existed only as text in spine.SECTIONS
 ["ontology"]. R5 (handle economy and durability) had no code behind it, which is
@@ -10,7 +10,7 @@ What this implements, against R4/R5/R1:
   resolve  handle -> content, loud-fail on unknown
   list_    enumerate live handles
   drop     explicit removal (no implicit eviction)
-  DEFAULTS to ./mcsa_store on the repo root
+  DEFAULTS to ./msca_store on the repo root
 
 Design notes, each of which is a gate rather than a comment:
 
@@ -38,7 +38,7 @@ import os
 import re
 from pathlib import Path
 
-DEFAULT_ROOT = Path(__file__).resolve().parent.parent / "mcsa_store"
+DEFAULT_ROOT = Path(__file__).resolve().parent.parent / "msca_store"
 HANDLE_RE = re.compile(r"^<([KGT]):([0-9a-f]{4,16})>$")
 
 __all__ = ["mint", "resolve", "list_", "drop", "stats", "mint_section",

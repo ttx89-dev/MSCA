@@ -1,4 +1,4 @@
-"""MCSA transport — transport utilities.
+"""MSCA transport — transport utilities.
 
 Enhanced transport layer integrating store, glyphs, and ECT
 for reliable data transport with error correction.

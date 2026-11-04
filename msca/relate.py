@@ -1,4 +1,4 @@
-"""MCSA relation algebra — C4. Closes the two ontology gaps named in
+"""MSCA relation algebra — C4. Closes the two ontology gaps named in
 65536/ontology.md, which R12 requires and which were documented but never
 implemented.
 

@@ -127,7 +127,7 @@ def best(limit: int | None = None) -> dict[str, Any]:
         if s["name"] in seen:
             continue
         hay = " ".join([s["name"], s["description"]]).lower()
-        if any(k in hay for k in ["points", "harness", "caliber", "mcsa"]):
+        if any(k in hay for k in ["points", "harness", "caliber", "msca"]):
             out.append(s)
             seen.add(s["name"])
     if limit:

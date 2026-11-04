@@ -1,4 +1,4 @@
-"""MCSA doctor — CALIBER environment health checks.
+"""MSCA doctor — CALIBER environment health checks.
 
 Runs comprehensive health checks across the CALIBER local environment:
 gates, capacity, store, coverage, skills. Returns structured results
@@ -169,7 +169,7 @@ mode: all
 description: >-
   Maximum-instrument decision agent. Resident tier is pre-decision rules only;
   instruments, protocol, ontology, gates, honesty and findings load on demand
-  by phase and tag via `python -m mcsa.loader`. Routes to the cheapest engine
+  by phase and tag via `python -m msca.loader`. Routes to the cheapest engine
   that resolves the question: laya (GLM 5.3 / nvidia) or deliberation.run,
   falling back to points-reasoning then sequential-thinking.
 temperature: 0
@@ -200,8 +200,8 @@ on demand. Resident content competes with the task for attention on every turn,
 so only rules that must bind *before* the decision that would load them live here.
 '''
         _AGENT_TAIL = '''
-GENERATED FILE. Source of truth is `mcsa/spine.py`; regenerate with
-`python -m mcsa --regen-agent`. Hand edits here are overwritten.
+GENERATED FILE. Source of truth is `msca/spine.py`; regenerate with
+`python -m msca --regen-agent`. Hand edits here are overwritten.
 '''
         expected = _AGENT_HEAD + RESIDENT.strip() + _AGENT_TAIL
         actual = AGENT.read_text()
@@ -236,7 +236,7 @@ def format_report(ok_all: bool, checks: List[CheckResult],
                   summary: Dict[str, Any], verbose: bool = False) -> str:
     lines = []
     status = "PASS" if ok_all else "FAIL"
-    lines.append(f"MCSA DOCTOR: {status} ({summary['passed']}/{summary['total']})")
+    lines.append(f"MSCA DOCTOR: {status} ({summary['passed']}/{summary['total']})")
     lines.append("-" * 60)
     for c in checks:
         icon = "+" if c.ok else "-"

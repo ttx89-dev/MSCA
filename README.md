@@ -1,21 +1,21 @@
-# MCSA — Maximum Calibration System Architecture
+# MSCA — Maximum Semantic Capacity Archive
 
-> Verified on the reference machine (2026-11-04): `python -m mcsa.gates`
+> Verified on the reference machine (2026-11-04): `python -m msca.gates`
 > reports **15/15 gates PASS** with `self_test=pass` (three deliberately
 > injected defects — a resident-budget overflow, a false self-certification,
-> and decorative padding — are detected and reported), and `python -m mcsa
-> --summary` reports **capacity match, 43 handles, 0 unreachable**.
+> and decorative padding — are detected and reported), and `python -m msca
+> --summary` reports **capacity match, 46 handles, 0 unreachable**.
 
-**MCSA** is a tiered agent-memory system for software agents that use
+**MSCA** is a tiered agent-memory archive for software agents that use
 language models. Instead of one long context window, it keeps a tiny,
 always-present spine of rules (Tier 1) and loads every other piece of
 knowledge on demand (Tier 2/3), with an explicit, measured budget.
 
 - **Tier 1 (resident):** 624 tokens under a hard 640-token budget
-  (`p50k_base`), generated from a single source file (`mcsa/spine.py`)
+  (`p50k_base`), generated from a single source file (`msca/spine.py`)
   so the documentation and the rules cannot drift.
 - **Tier 2 (phase-driven):** loaded by phase and by tag at every phase
-  transition — `python -m mcsa.loader --phase N [--tag T]`. A non-zero
+  transition — `python -m msca.loader --phase N [--tag T]`. A non-zero
   exit or empty result is a FAIL: never continue from a partial load.
 - **Tier 3 (answering):** legitimately answering from loaded tiers is
   valid; *implying* it came from Tier 1 is not. Tier identification is a
@@ -25,29 +25,29 @@ knowledge on demand (Tier 2/3), with an explicit, measured budget.
 
 | Path | Role |
 |---|---|
-| `mcsa/spine.py` | The Tier-1 resident spine (single source of truth for the always-on rules) |
-| `mcsa/gates.py` | The 10 executable dev-policy gates + corruption self-test |
-| `mcsa/loader.py` | Phase/tag loader; refuses unknown keys; coverage self-check |
-| `mcsa/capacity.py` | R3 capacity record verification against the live code |
-| `mcsa/store.py` | Durable handle binding (`--mint`) using `mcsa_store/` |
-| `mcsa/relate.py` | EQL/ISA/INS relation algebra |
-| `mcsa/findings.py` | Measured-defect ledger (F7/G6 style double-book findings) |
-| `mcsa/doctor.py` | Environment/health doctor |
-| `mcsa/context.py`, `mcsa/memory_cap.py` | Context window accounting and cap enforcement |
-| `mcsa/agent_loop.py`, `mcsa/coordination.py`, `mcsa/capability.py` | Agent loop, coordination, capability registry |
-| `mcsa/learning.py`, `mcsa/meta.py`, `mcsa/ect.py`, `mcsa/glyph.py`, `mcsa/env.py`, `mcsa/llm.py` | Learning ledger, meta checks, error-correction transport, glyph handle handling, environment, LLM plumbing |
-| `mcsa_store/` | Content-addressed store: blobs (`G_*.blob`, …) + `capacity.json` record |
-| `MCSA_REQUIREMENTS.md`, `MCSA_AGENT_MANUAL_ADDENDUM.md` | Requirements and manual addendum |
+| `msca/spine.py` | The Tier-1 resident spine (single source of truth for the always-on rules) |
+| `msca/gates.py` | The 10 executable dev-policy gates + corruption self-test |
+| `msca/loader.py` | Phase/tag loader; refuses unknown keys; coverage self-check |
+| `msca/capacity.py` | R3 capacity record verification against the live code |
+| `msca/store.py` | Durable handle binding (`--mint`) using `msca_store/` |
+| `msca/relate.py` | EQL/ISA/INS relation algebra |
+| `msca/findings.py` | Measured-defect ledger (F7/G6 style double-book findings) |
+| `msca/doctor.py` | Environment/health doctor |
+| `msca/context.py`, `msca/memory_cap.py` | Context window accounting and cap enforcement |
+| `msca/agent_loop.py`, `msca/coordination.py`, `msca/capability.py` | Agent loop, coordination, capability registry |
+| `msca/learning.py`, `msca/meta.py`, `msca/ect.py`, `msca/glyph.py`, `msca/env.py`, `msca/llm.py` | Learning ledger, meta checks, error-correction transport, glyph handle handling, environment, LLM plumbing |
+| `msca_store/` | Content-addressed store: blobs (`G_*.blob`, …) + `capacity.json` record |
+| `MSCA_REQUIREMENTS.md`, `MSCA_AGENT_MANUAL_ADDENDUM.md` | Requirements and manual addendum |
 
 ## Quick start
 
 ```bash
 # All executable verifications (no external network needed):
-python -m mcsa --summary
-python -m mcsa.gates
-python -m mcsa.capacity --verify
-python -m mcsa.loader --phase 1
-python -m mcsa.loader --coverage
+python -m msca --summary
+python -m msca.gates
+python -m msca.capacity --verify
+python -m msca.loader --phase 1
+python -m msca.loader --coverage
 ```
 
 Expected outputs: `15/15 gates` (`.gates`), `capacity match` +
@@ -86,19 +86,19 @@ Expected outputs: `15/15 gates` (`.gates`), `capacity match` +
 
 EXTENSIBLE, MODULAR, SCRIPTABLE, INTEROPERABLE, PROGRAMMABLE, SCALABLE,
 REPLICABLE (run-twice-diff-zero), TESTABLE (mutation-checked), VALIDATABLE,
-OPERABLE (documented features actually executed). `python -m mcsa.gates` runs
+OPERABLE (documented features actually executed). `python -m msca.gates` runs
 all ten plus the corruption self-test.
 
 ## Runtime state (excluded from version control)
 
-`.mcsa_learning.json` / `.mcsa_memory.json` are per-machine learning ledgers
+`.msca_learning.json` / `.msca_memory.json` are per-machine learning ledgers
 written at the repository root; they are machine-local state and are
-gitignored. `mcsa_store/` is versioned — the capacity R3 record and its blobs
+gitignored. `msca_store/` is versioned — the capacity R3 record and its blobs
 are part of what `--verify` checks.
 
 ## License
 
 MIT — see [`LICENSE`](LICENSE). Part of the ONE research stack
 ("Maximum Semantic Capacity via the Ontology of Optimal Information
-Structure"); see its reproducibility appendix for how MCSA's numbers are
+Structure"); see its reproducibility appendix for how MSCA's numbers are
 checked.

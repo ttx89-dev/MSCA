@@ -1,4 +1,4 @@
-"""MCSA memory_cap - memory and capability management."""
+"""MSCA memory_cap - memory and capability management."""
 
 from __future__ import annotations
 
@@ -11,7 +11,7 @@ __all__ = ["MemoryCap", "store_memory", "recall"]
 
 class MemoryCap:
     def __init__(self, path: Path | str | None = None):
-        self.path = Path(path) if path else Path(".mcsa_memory.json")
+        self.path = Path(path) if path else Path(".msca_memory.json")
         self.mem: Dict[str, Any] = {}
         self._load()
 

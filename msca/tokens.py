@@ -38,7 +38,7 @@ ENCODINGS: tuple[str, ...] = ("cl100k_base", "o200k_base", "p50k_base")
 # If you raise it, raise it here, visibly.
 APPROVED_BUDGET = 640
 
-CEILING_ENV = "MCSA_R1_MAX_TOKENS"
+CEILING_ENV = "MSCA_R1_MAX_TOKENS"
 
 
 def ceiling(default: int = APPROVED_BUDGET) -> int:

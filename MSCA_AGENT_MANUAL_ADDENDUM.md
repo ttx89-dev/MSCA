@@ -1,7 +1,7 @@
-# MCSA — Agent Manual Addendum: Semantic-Capacity Tier
+# MSCA — Agent Manual Addendum: Semantic-Capacity Tier
 
 > **ADDITIVE. Replaces nothing.** Insert as a new section. Do not delete, reorder,
-> or reword any existing section. See MCSA_REQUIREMENTS.md §R9 for the
+> or reword any existing section. See MSCA_REQUIREMENTS.md §R9 for the
 > non-destructive guarantee and its acceptance test.
 >
 > **Insertion point:** after the existing tool-selection / dispatch table, before
@@ -17,8 +17,8 @@
 > **Resident cost:** 592 tokens measured on the strictest real tokenizer
 > (p50k_base), against a 640 budget. Earlier figures here said "~500 tokens
 > (chars/4)" — that was an *estimate* and it under-reported by 18%. Regenerate
-> this block with `python -m mcsa --regen-docs`; it is generated from
-> `mcsa/spine.py`, never hand-edited. `r_docs_drift()` fails the build if the two
+> this block with `python -m msca --regen-docs`; it is generated from
+> `msca/spine.py`, never hand-edited. `r_docs_drift()` fails the build if the two
 > diverge.
 
 ---
@@ -53,16 +53,16 @@ Rules bind before you pick an engine, tool, or load.
       source system a first pass missed 127 of 255 corrupt records while every
       flag read green.
   R-H LOAD AT EVERY PHASE TRANSITION (mandatory). One command: `python -m
-      mcsa.loader --phase N`. Non-zero exit or empty result is a FAIL — report
+      msca.loader --phase N`. Non-zero exit or empty result is a FAIL — report
       it, never continue from a partial subgraph. This lives here on purpose:
       harness-side auto-dereference is unbuilt (I1), so omission risk is removed
       by removing discretion, not by adding tooling.
 
-PTR (post-decision — load, never inline) · `python -m mcsa.loader --list`
+PTR (post-decision — load, never inline) · `python -m msca.loader --list`
   spine.py sections · gates.py dev-policy gates · findings.py measured defects
   store.py handles · capacity.py R3 record · relate.py EQL/ISA/INS algebra
-  skills_bank.py (deterministic index/load/search) · `python -m mcsa skills|skills-best`
-  `python -m mcsa` preflight: gates + capacity verify + coverage
+  skills_bank.py (deterministic index/load/search) · `python -m msca skills|skills-best`
+  `python -m msca` preflight: gates + capacity verify + coverage
 ```
 
 ---
@@ -135,7 +135,7 @@ spec exists to prevent (R3, R6).
   only the resident fraction falls. No information is created or destroyed.
 - **Does not raise per-symbol entropy.** A handle is 4 hex = 16 bits of
   *address*. Meaning is bounded by what the referenced content holds. A 65536-
-  symbol alphabet (R: see MCSA_REQUIREMENTS §2) would not change this.
+  symbol alphabet (R: see MSCA_REQUIREMENTS §2) would not change this.
 - **Does not guarantee recall.** If the codebook is evicted, handles become
   noise — this is why R2 makes codebook residency an invariant, not a default.
 - **Does not validate content.** Integrity of a loaded graph is the transport
@@ -162,7 +162,7 @@ R3   capacity record vs code        no drift      {reachable, resident, commit}
 R5   handle mint+resolve            0 mismatch    7 handles, durable on disk
 R12  EQL/ISA/INS algebra            0 violations  instance never a subclass
 
-`python -m mcsa` runs all 14 gates plus a corruption self-test and exits
+`python -m msca` runs all 14 gates plus a corruption self-test and exits
 non-zero on any failure. It is a deploy step, not a checklist.
 ```
 
@@ -181,4 +181,4 @@ non-zero on any failure. It is a deploy step, not a checklist.
 ---
 
 *Addendum. Composes with the existing manual without altering it. Requirements
-and evidence: MCSA_REQUIREMENTS.md.*
+and evidence: MSCA_REQUIREMENTS.md.*

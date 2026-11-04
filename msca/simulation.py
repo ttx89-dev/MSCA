@@ -1,4 +1,4 @@
-"""MCSA simulation — simulation-based calibration and calculation.
+"""MSCA simulation — simulation-based calibration and calculation.
 
 Provides simulation utilities for calibration, coordination, and calculation
 workflows. Supports glyph-based toolcall sequence simulation and validation.

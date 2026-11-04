@@ -1,11 +1,11 @@
-"""MCSA loader — phase/tag-keyed selective subgraph retrieval.
+"""MSCA loader — phase/tag-keyed selective subgraph retrieval.
 
-SCRIPTABLE:  python -m mcsa.loader --phase 12
-             python -m mcsa.loader --tag safety
-             python -m mcsa.loader --phase 12 --tag safety
-             python -m mcsa.loader --all
-             python -m mcsa.loader --resident
-             python -m mcsa.loader --list
+SCRIPTABLE:  python -m msca.loader --phase 12
+             python -m msca.loader --tag safety
+             python -m msca.loader --phase 12 --tag safety
+             python -m msca.loader --all
+             python -m msca.loader --resident
+             python -m msca.loader --list
 
 Selectivity is the point: with prose you load "the safety section"; with this
 index you load the union of sections reachable from the current phase and tag.
@@ -106,7 +106,7 @@ def unknown_keys(phase: int | None, tag: str | None) -> list[str]:
 
 
 def main(argv: list[str] | None = None) -> int:
-    ap = argparse.ArgumentParser(prog="mcsa.loader")
+    ap = argparse.ArgumentParser(prog="msca.loader")
     ap.add_argument("--phase", type=int)
     ap.add_argument("--tag")
     ap.add_argument("--all", action="store_true")
@@ -137,7 +137,7 @@ def main(argv: list[str] | None = None) -> int:
     if bad:
         print(f"FAIL: unknown key(s) {bad} — refusing to emit a partial subgraph",
               file=sys.stderr)
-        print("run: python -m mcsa.loader --list", file=sys.stderr)
+        print("run: python -m msca.loader --list", file=sys.stderr)
         return 2
     if a.phase is None and a.tag is None:
         ap.error("need --phase, --tag, --all, --resident, --list, or --coverage")

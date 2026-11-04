@@ -14,3 +14,7 @@ __pycache__/
 .DS_Store
 *.swp
 *~
+
+# post-rename runtime state names
+.msca_learning.json
+.msca_memory.json

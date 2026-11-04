@@ -1,4 +1,4 @@
-"""MCSA semantic-capacity tier — content split and phase-keyed index.
+"""MSCA semantic-capacity tier — content split and phase-keyed index.
 
 The split is governed by one rule, derived from the ontology rather than chosen:
 
@@ -51,16 +51,16 @@ Rules bind before you pick an engine, tool, or load.
       source system a first pass missed 127 of 255 corrupt records while every
       flag read green.
   R-H LOAD AT EVERY PHASE TRANSITION (mandatory). One command: `python -m
-      mcsa.loader --phase N`. Non-zero exit or empty result is a FAIL — report
+      msca.loader --phase N`. Non-zero exit or empty result is a FAIL — report
       it, never continue from a partial subgraph. This lives here on purpose:
       harness-side auto-dereference is unbuilt (I1), so omission risk is removed
       by removing discretion, not by adding tooling.
 
-PTR (post-decision — load, never inline) · `python -m mcsa.loader --list`
+PTR (post-decision — load, never inline) · `python -m msca.loader --list`
   spine.py sections · gates.py dev-policy gates · findings.py measured defects
   store.py handles · capacity.py R3 record · relate.py EQL/ISA/INS algebra
-  skills_bank.py (deterministic index/load/search) · `python -m mcsa skills|skills-best`
-  `python -m mcsa` preflight: gates + capacity verify + coverage
+  skills_bank.py (deterministic index/load/search) · `python -m msca skills|skills-best`
+  `python -m msca` preflight: gates + capacity verify + coverage
 """
 
 # ═════════════════════════════════════════════════════════════════════════════
@@ -178,7 +178,7 @@ budget. Budget exhaustion is a result, not a proof of optimality.
 """
 
 SECTIONS["ontology"] = """\
-## MCSA ONTOLOGY — encode/decode grammar
+## MSCA ONTOLOGY — encode/decode grammar
 
 TRANSPORT  <K:hhhh> keybank · <G:hhhh> graph · <T:hhhh> text
            hhhh = 4 hex, content-addressed, durable across process and restart
@@ -205,7 +205,7 @@ DISCLOSURE BLOCK (emit verbatim, filled):
 SECTIONS["gates"] = """\
 ## DEV-POLICY GATES — every deliverable passes these
 A feature that cannot be tested does not ship; it ships as a documented gap.
-Executable form: `python -m mcsa.gates`. Source of truth: gates.py.
+Executable form: `python -m msca.gates`. Source of truth: gates.py.
 
   EXTENSIBLE     new capability touches only new files
   MODULAR        one concern per unit, no cross-import outside declared iface
@@ -254,7 +254,7 @@ SECTIONS["gaps"] = """\
       The harness catalog reports z-ai/glm-5.3 on nvidia as free+default (merged
       registry), so laya/deliberation routing works, but opencode's own model
       picker may not list it. Fix is additive: one line, nothing removed.
-  G3  MCSA R1 headroom unclosed. Resident tier measured 500 of a 512 ceiling on
+  G3  MSCA R1 headroom unclosed. Resident tier measured 500 of a 512 ceiling on
       chars/4, and BPE runs HIGHER on symbol-mixed text, so it will likely
       fail R1 as written. Owner decision, then mechanical trim.
   G4  deep-thinker is not in the live tool registry; sequential-thinking is.

@@ -1,4 +1,4 @@
-"""MCSA capacity measurement — C2. Implements R3.
+"""MSCA capacity measurement — C2. Implements R3.
 
 R3 said: capacity SHALL be computed by an executable check and recorded at deploy
 time; no claim of capacity may appear without a measurement artifact and its
@@ -12,7 +12,7 @@ reading green while its subject is absent) that F4 documents.
 "Resident" is measured with the WORST available real tokenizer (see tokens.py),
 never with chars/4.
 
-The record is written to mcsa_store/capacity.json and is expected to be
+The record is written to msca_store/capacity.json and is expected to be
 committed. A capacity claim with no record in the tree is not a claim.
 """
 
@@ -28,7 +28,7 @@ from . import store, tokens
 from .loader import ALL_SECTIONS, PHASES, TAGS, coverage
 from .spine import RESIDENT
 
-RECORD = Path(__file__).resolve().parent.parent / "mcsa_store" / "capacity.json"
+RECORD = Path(__file__).resolve().parent.parent / "msca_store" / "capacity.json"
 
 # ── D5: the capacity floor ──────────────────────────────────────────────────
 #
@@ -48,7 +48,7 @@ RECORD = Path(__file__).resolve().parent.parent / "mcsa_store" / "capacity.json"
 # MECHANISM (laya noul 0.8025 that a raise-only explicit-edit floor is right):
 # the floor is a constant with provenance, not a derived value. It cannot track
 # the measurement, because a floor that tracks the measurement measures nothing.
-FLOOR_ENV = "MCSA_CAPACITY_FLOOR"
+FLOOR_ENV = "MSCA_CAPACITY_FLOOR"
 CAPACITY_FLOOR = 150.0
 
 
@@ -88,7 +88,7 @@ def measure(root: str | Path | None = None) -> dict:
     resident_tokens = res["governing"]
     cov = coverage()
     return {
-        "schema": "mcsa.capacity/1",
+        "schema": "msca.capacity/1",
         "measured_at": time.strftime("%Y-%m-%dT%H:%M:%S%z"),
         "commit": _commit(base),
         "resident_tokens": resident_tokens,
@@ -108,13 +108,13 @@ def measure(root: str | Path | None = None) -> dict:
         >= floor() if resident_tokens else False,
         "unreachable_sections": sorted(cov["unreachable"]),
         "handles_minted": len(store.list_(root=base)),
-        "command": "python -m mcsa.capacity --record",
+        "command": "python -m msca.capacity --record",
     }
 
 
 def write(root: str | Path | None = None) -> dict:
     rec = measure(root)
-    p = RECORD if root is None else Path(root) / "mcsa_store" / "capacity.json"
+    p = RECORD if root is None else Path(root) / "msca_store" / "capacity.json"
     p.parent.mkdir(parents=True, exist_ok=True)
     p.write_text(json.dumps(rec, indent=2, sort_keys=True) + "\n")
     rec["written_to"] = str(p)
@@ -142,9 +142,9 @@ def verify(root: str | Path | None = None) -> dict:
     A stale record is a false claim. Drift between the record and the source is
     a failure, not a cosmetic mismatch -- the record exists to be checkable.
     """
-    p = RECORD if root is None else Path(root) / "mcsa_store" / "capacity.json"
+    p = RECORD if root is None else Path(root) / "msca_store" / "capacity.json"
     if not p.exists():
-        return {"ok": False, "reason": "no record; run: python -m mcsa.capacity --record"}
+        return {"ok": False, "reason": "no record; run: python -m msca.capacity --record"}
     try:
         recorded = json.loads(p.read_text())
     except Exception as e:
@@ -163,7 +163,7 @@ def verify(root: str | Path | None = None) -> dict:
 
 def main() -> int:
     import argparse
-    ap = argparse.ArgumentParser(prog="mcsa.capacity")
+    ap = argparse.ArgumentParser(prog="msca.capacity")
     ap.add_argument("--record", action="store_true", help="measure and write the record")
     ap.add_argument("--verify", action="store_true", help="check record vs live code")
     ap.add_argument("--floor", action="store_true", help="check capacity against D5 floor")

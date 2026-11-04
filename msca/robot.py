@@ -1,4 +1,4 @@
-"""MCSA robot — Robot coordination and calibration.
+"""MSCA robot — Robot coordination and calibration.
 
 Robot coordination with glyph-based toolcall sequences and
 simulation-based calibration loops.

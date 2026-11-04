@@ -1,4 +1,4 @@
-"""MCSA glyph utilities — enhanced glyph operations.
+"""MSCA glyph utilities — enhanced glyph operations.
 
 Provides utilities for working with glyphs/handles, complementing the
 store module. Focuses on glyph operations mentioned in instruments:

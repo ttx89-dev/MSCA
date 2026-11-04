@@ -1,4 +1,4 @@
-"""MCSA ECT — Error Correction Transport.
+"""MSCA ECT — Error Correction Transport.
 
 Implements error correction for transport reliability. As noted in G1,
 Reed-Solomon (RS(255,223)) parity is the nearest analogue to ECT in the

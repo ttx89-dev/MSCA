@@ -1,4 +1,4 @@
-"""MCSA capability - capability management for the agent stack."""
+"""MSCA capability - capability management for the agent stack."""
 
 from __future__ import annotations
 

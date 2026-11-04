@@ -1,4 +1,4 @@
-"""MCSA coordination — Robot coordination and calibration.
+"""MSCA coordination — Robot coordination and calibration.
 
 Coordinates glyph-based toolcall sequences with simulation-based
 calibration and calculation.

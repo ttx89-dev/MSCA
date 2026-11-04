@@ -1,4 +1,4 @@
-"""MCSA context — enhanced context management.
+"""MSCA context — enhanced context management.
 
 Provides utilities for loading, merging, and managing context
 for CALIBER agent operations.

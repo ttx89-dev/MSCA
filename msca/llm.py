@@ -1,4 +1,4 @@
-"""MCSA LLM — LLM dev environment utilities.
+"""MSCA LLM — LLM dev environment utilities.
 
 Provides LLM integration utilities for the agent stack with points/glyph
 support, routing, and calibration.

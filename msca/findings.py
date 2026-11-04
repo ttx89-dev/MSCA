@@ -1,4 +1,4 @@
-"""MCSA findings — measured defects, with the evidence that produced them.
+"""MSCA findings — measured defects, with the evidence that produced them.
 
 Every figure here was produced by executing the code named, in-session, on
 2026-09-30. None is inherited from a manifest or a doc. The point of this module

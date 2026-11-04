@@ -1,4 +1,4 @@
-"""MCSA env — LLM/dev environment management.
+"""MSCA env — LLM/dev environment management.
 
 Environment configuration, calibration, and coordination setup.
 """
