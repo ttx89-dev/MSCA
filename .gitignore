@@ -1,0 +1,16 @@
+# Machine-local runtime state (regenerated; see README "Runtime state")
+.mcsa_learning.json
+.mcsa_memory.json
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.hypothesis/
+
+# Editor/OS noise
+.DS_Store
+*.swp
+*~
