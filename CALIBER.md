@@ -1,5 +1,5 @@
 ---
-description: 'Maximum-instrument decision agent. Resident tier is pre-decision rules only; instruments, protocol, ontology, gates, honesty and findings load on demand by phase and tag via `python -m msca.loader`. Routes to the cheapest engine that resolves the question: laya (GLM 5.3 / nvidia) or deliberation.run, falling back to vexl-points-reasoning then sequential-thinking.'
+description: 'Maximum-instrument decision agent. Resident tier is pre-decision rules only; instruments, protocol, ontology, gates, honesty and findings load on demand by phase and tag via `python -m msca.loader`. Routes to the cheapest engine that resolves the question: laya (GLM 5.3 / nvidia) or deliberation.run, falling back to points-reasoning then sequential-thinking.'
 mode: all
 color: '#E8A33D'
 permissions:
@@ -93,7 +93,7 @@ Rules bind before you pick an engine, tool, or load.
       GPU, ~20 s CPU; ceiling 40/min nvidia). `questions` takes a MAP: one call
       per decision. 6 batched = 1 load, not 6.
   R-C FALLBACK in order; announce any drop and why.
-      1 laya (GLM 5.3/nvidia) | deliberation.run   2 vexl-points-reasoning
+      1 laya (GLM 5.3/nvidia) | deliberation.run   2 points-reasoning
       3 sequential-thinking (explicit revision)      OUT unresolved, never faked.
   R-D UTILITY DOMINATES 5:1 — 500*dU + 200*dGap + 200*dConf + 100*dDrift. The
       other three cannot outvote it. Utility up while all three worsen still
@@ -115,6 +115,7 @@ Rules bind before you pick an engine, tool, or load.
 PTR (post-decision — load, never inline) · `python -m msca.loader --list`
   spine.py sections · gates.py dev-policy gates · findings.py measured defects
   store.py handles · capacity.py R3 record · relate.py EQL/ISA/INS algebra
+  skills_bank.py (deterministic index/load/search) · `python -m msca skills|skills-best`
   `python -m msca` preflight: gates + capacity verify + coverage
 
 ---

@@ -128,7 +128,7 @@ output, verbatim, is committed as `assets/terminal_gates.svg`.
 | `msca/store.py` | Durable handle binding (`store --mint`) over `msca_store/` |
 | `msca/relate.py` | EQL/ISA/INS relation-algebra engine (checked by `R12`) |
 | `msca/findings.py` | Measured-defect ledger |
-| `msca/doctor.py` | Environment/health doctor |
+| `msca/doctor.py` | Environment/health doctor — checks resident budget, gates, capacity, store, coverage, skills, and that the root manual's resident tier is in sync with the spine |
 | `msca/context.py`, `msca/memory_cap.py` | Context-window accounting and cap enforcement |
 | `msca/agent_loop.py`, `msca/coordination.py`, `msca/capability.py` | Agent loop, coordination, capability registry |
 | `msca/learning.py` | Learning ledger |
@@ -147,7 +147,7 @@ output, verbatim, is committed as `assets/terminal_gates.svg`.
 | `assets/` | `banner.svg`, `terminal_summary.svg`, `terminal_gates.svg` (verbatim output) |
 | `MSCA_REQUIREMENTS.md` | The draft spec for a maximum-semantic-capacity agent system prompt |
 | `MSCA_AGENT_MANUAL_ADDENDUM.md` | Docs addendum: the Tier-1 spine rendered for **appending to** an external agent manual — regenerated in place and kept identical to the spine by R9 (`python -m msca --regen-docs`) |
-| `.opencode/agents/CALIBER.md` | The deployment-grade agent manual (harness frontmatter + resident tier + companion sections); surgically refreshed to post-rename spellings and committed 2026-11-05 |
+| `CALIBER.md` | The deployment-grade agent manual (harness frontmatter + resident tier + companion sections), tracked at the repository root; surgically refreshed (spelling + spine sync) and moved out of `.opencode/agents/` on 2026-11-05 |
 
 ## The agent manual: deployment pair, reconciled 2026-11-05
 
@@ -155,11 +155,13 @@ The docs addendum above is one half of a two-artifact pair:
 
 - **The agent manual** is the rendered resident tier — the Tier-1 file an
   agent harness loads as its standing instructions. `python -m msca
-  --regen-agent` emits a *minimal render* (resident tier only — no harness
-  frontmatter); the deployment-grade copy additionally carries the harness
-  frontmatter (description/mode/color/permissions) and companion sections,
-  so refreshing a deployment is a surgical spelling pass over the existing
-  copy, not a blind overwrite with the regen output.
+  --regen-agent` emits a *minimal render* — its own template frontmatter
+  plus the resident tier — written to the `.opencode/agents/` scratch path
+  (gitignored; not the deployment target). The deployment-grade copy,
+  tracked at the repository root as `CALIBER.md`, additionally carries the
+  harness frontmatter (description/mode/color/`permissions:`) and
+  companion sections, so it is refreshed surgically, never overwritten by
+  regen output.
 - **The docs addendum** (`MSCA_AGENT_MANUAL_ADDENDUM.md`, tracked here) is
   the spine formatted for *adding onto* such a manual; `--regen-docs`
   rewrites its T0 block in place, and gate R9 asserts addendum == spine.
@@ -168,14 +170,22 @@ R9 pins the addendum; deployed manual copies are harness-owned and
 verified by no gate — that boundary is disclosed, not an oversight.
 
 **Reconciliation (owner-approved, executed 2026-11-05):** the deployment
-copy was surgically refreshed (`mcsa` → `msca` spellings only; frontmatter
-and companion sections byte-preserved), committed to this repository at
-`.opencode/agents/CALIBER.md`, and installed into the live global harness
-folder `~/.config/opencode/agents/CALIBER.md` (the two copies are
-md5-identical, 8,609 bytes, 1,254 words, frontmatter intact). The remaining
-older copies — two project-scoped under `vexl-language*`, four
-backups/archives — remain as archived vintages; refreshing them is at the
-owner's leisure.
+copy was surgically refreshed and moved to this repository's root:
+`mcsa` → `msca` spellings, then its embedded resident region aligned to
+today's spine (fallback-engine wording and the added `skills_bank.py`
+loader line — both found by the doctor's instrument), with the harness
+frontmatter and companion sections byte-preserved. Installed into the
+live global harness folder `~/.config/opencode/agents/CALIBER.md` (the two
+copies are md5-identical, 8,731 bytes, 1,262 words, frontmatter intact).
+The empty `.opencode/` folder was removed; a future `--regen-agent`
+recreates only the gitignored `.opencode/agents/` scratch path. The
+harness `description` frontmatter line took the same reconciliation:
+`vexl-points-reasoning` → `points-reasoning` was the spelling pass's last
+residue; no pre-rename engine wording remains in either copy (the
+`vexl-language` repository path in the loader section is a real path
+example, not engine wording). The remaining older copies — two
+project-scoped under `vexl-language*`, four backups/archives — remain as
+archived vintages; refreshing them is at the owner's leisure.
 
 ## Runtime state (excluded from version control)
 

@@ -18,3 +18,7 @@ __pycache__/
 # post-rename runtime state names
 .msca_learning.json
 .msca_memory.json
+
+# regen scratch: --regen-agent writes a minimal render to .opencode/agents/;
+# the deployment-grade manual is tracked at the repository root (CALIBER.md)
+.opencode/agents/

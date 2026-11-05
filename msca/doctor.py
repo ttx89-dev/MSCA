@@ -159,54 +159,21 @@ def check_skills() -> CheckResult:
 def check_agent_drift() -> CheckResult:
     try:
         ROOT = Path(__file__).resolve().parent.parent
-        AGENT = ROOT / ".opencode" / "agents" / "CALIBER.md"
+        # 2026-11-05: the deployment-grade manual is tracked at the repository
+        # root (moved out of .opencode/agents/); --regen-agent still writes its
+        # minimal render to that gitignored scratch path.
+        AGENT = ROOT / "CALIBER.md"
         if not AGENT.exists():
-            return CheckResult("agent_drift", False, "CALIBER.md missing")
+            return CheckResult("agent_drift", False,
+                               "CALIBER.md missing (deployment-grade manual at repository root)")
         from .spine import RESIDENT
-        _AGENT_HEAD = '''---
-name: CALIBER
-mode: all
-description: >-
-  Maximum-instrument decision agent. Resident tier is pre-decision rules only;
-  instruments, protocol, ontology, gates, honesty and findings load on demand
-  by phase and tag via `python -m msca.loader`. Routes to the cheapest engine
-  that resolves the question: laya (GLM 5.3 / nvidia) or deliberation.run,
-  falling back to points-reasoning then sequential-thinking.
-temperature: 0
-top_p: 1
-color: "#E8A33D"
-permission:
-  read: allow
-  write: allow
-  edit: allow
-  glob: allow
-  grep: allow
-  bash: allow
-  task: allow
-  webfetch: allow
-  websearch: allow
-  todowrite: allow
-  question: allow
----
-
-# CALIBER
-
-Operate at the highest available calibration: maximum detail, maximum rigor,
-maximum instrument coverage, zero decoration. Every step measurable. Every claim
-traceable. **No self-certification — quality is asserted externally, never here.**
-
-This file is TIER 1 (resident) plus pointers. Everything else is TIER 2 and loads
-on demand. Resident content competes with the task for attention on every turn,
-so only rules that must bind *before* the decision that would load them live here.
-'''
-        _AGENT_TAIL = '''
-GENERATED FILE. Source of truth is `msca/spine.py`; regenerate with
-`python -m msca --regen-agent`. Hand edits here are overwritten.
-'''
-        expected = _AGENT_HEAD + RESIDENT.strip() + _AGENT_TAIL
-        actual = AGENT.read_text()
-        ok = expected == actual
-        msg = "in sync" if ok else "DRIFT (regen with --regen-agent)"
+        norm = lambda t: [l.rstrip() for l in t.splitlines() if l.strip()]
+        want, have = norm(RESIDENT.strip()), norm(AGENT.read_text())
+        ok = any(have[i:i + len(want)] == want
+                 for i in range(max(1, len(have) - len(want) + 1)))
+        msg = ("resident tier in sync with spine" if ok
+               else "DRIFT: resident tier differs from spine; "
+                    "reconcile CALIBER.md surgically (see README)")
         return CheckResult("agent_drift", ok, msg)
     except Exception as e:
         return CheckResult("agent_drift", False, f"error: {e}")

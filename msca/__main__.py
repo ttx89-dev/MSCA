@@ -79,6 +79,9 @@ def regen_agent() -> bool:
     AGENT.parent.mkdir(parents=True, exist_ok=True)
     AGENT.write_text(out)
     print(f"regenerated {AGENT} ({len(out)} bytes)")
+    print("note: minimal render (template frontmatter + resident tier, no companion "
+          "sections); the deployment-grade manual is CALIBER.md at the repository "
+          "root - reconcile it surgically, never overwrite")
     return True
 
 
