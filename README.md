@@ -146,7 +146,34 @@ output, verbatim, is committed as `assets/terminal_gates.svg`.
 | `tools/make_doc_assets.py` | Generates `assets/` from **live** runs of the verification commands — regenerate and the cards re-verify themselves |
 | `assets/` | `banner.svg`, `terminal_summary.svg`, `terminal_gates.svg` (verbatim output) |
 | `MSCA_REQUIREMENTS.md` | The draft spec for a maximum-semantic-capacity agent system prompt |
-| `MSCA_AGENT_MANUAL_ADDENDUM.md` | Generated manual addendum — kept identical to the spine by R9 |
+| `MSCA_AGENT_MANUAL_ADDENDUM.md` | Docs addendum: the Tier-1 spine rendered for **appending to** an external agent manual — regenerated in place and kept identical to the spine by R9 (`python -m msca --regen-docs`). The parent manual is *not* a repository file; see the deployment map below |
+
+## The agent manual: generated here, deployed outside this repository
+
+The docs addendum above is one half of a two-artifact pair; the parent is
+deliberately not a repository file:
+
+- **The agent manual** is the rendered resident tier — the Tier-1 file an
+  agent harness loads as its standing instructions. It is generated from the
+  same spine: `python -m msca --regen-agent` writes
+  `.opencode/agents/CALIBER.md` under this repository, from which it is
+  installed into each harness's agent directory (global and per-project).
+- **The docs addendum** (`MSCA_AGENT_MANUAL_ADDENDUM.md`, tracked here) is
+  the spine formatted for *adding onto* such a manual; `--regen-docs`
+  rewrites its T0 block in place, and gate R9 asserts addendum == spine.
+
+R9's reach ends at the repository edge: deployed copies are harness-owned,
+and no gate verifies them — that is a disclosed boundary, not an oversight.
+Environment search executed 2026-11-05 found one live global agent file,
+two project-scoped copies, and four backups/archives; **every deployed copy
+predates the 2026-11-04 MCSA→MSCA rename** (their commands still read
+`python -m mcsa`; the live global copy otherwise carries the current
+621-token resident tier). Refreshing a deployment is the owner's step:
+
+```bash
+python -m msca --regen-agent                     # regenerate .opencode/agents/CALIBER.md
+cp .opencode/agents/CALIBER.md ~/.config/opencode/agents/CALIBER.md   # deploy
+```
 
 ## Runtime state (excluded from version control)
 

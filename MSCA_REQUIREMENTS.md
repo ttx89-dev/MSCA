@@ -7,6 +7,14 @@
 > **Evidence base:** measured behaviour of `POINTS/suite` (encoder/decoder round-trip
 > probes), `points-encoding`, and 4-gram density
 > analysis of the currently deployed prompts.
+>
+> **Status note (2026-11-05, evaluation pass):** the evidence base cites
+> sources by name. `ABSUBEST_FRAMEWORK_v3.1.md` resolves in the workspace
+> (`projects/ABSUBEST/`); `DEPLOYED_MASTER_DEV_SYSTEM_PROMPT.md` is cited
+> from the original drafting environment and is present neither in the
+> workspace nor in this repository's history — these cited names describe
+> sources consulted, not files shipped with this repository, per the draft
+> scope above.
 
 ---
 
